@@ -31,16 +31,20 @@ process.on("SIGTERM", async () => {
 })
 
 //Import Routes
-import trips from "./src/routes/trips/trips.js"
+import tripRoutes from "./src/routes/trips/tripRoutes.js"
+import authRoutes from "./src/routes/auth/authRoutes.js"
+
 
 config()
 connectDB()
 
 // Middleware to parse JSON bodies
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
 
 // API Routes
-app.use("/trips", trips)
+app.use("/trips", tripRoutes)
+app.use("/auth", authRoutes)
 
 
 // Test route
